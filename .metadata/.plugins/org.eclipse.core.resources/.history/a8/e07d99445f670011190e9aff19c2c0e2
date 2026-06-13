@@ -1,0 +1,14 @@
+spring.application.name=CibertecDaniel.T2
+# 🔴 CAMBIO IMPORTANTE: Donde decía localhost, pones TU SERVIDOR: SUITEBG104-ST05
+spring.datasource.url=jdbc:sqlserver://SUITEBG104-ST05:1433;databaseName=GestionPersonal;encrypt=true;trustServerCertificate=true;
+spring.datasource.username=sa
+spring.datasource.password=sql
+spring.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+# JPA + HIBERNATE
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.SQLServerDialect
+
+# THYMELEAF
+spring.thymeleaf.cache=false

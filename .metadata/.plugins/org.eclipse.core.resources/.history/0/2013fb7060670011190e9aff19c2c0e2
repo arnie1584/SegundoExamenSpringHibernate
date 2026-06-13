@@ -1,0 +1,52 @@
+package com.example.demo.controller.com.example.demo.controller;
+
+import com.example.demo.model.Personal;
+import com.example.demo.service.PersonalService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@RequestMapping("/personal")
+public class PersonalController {
+
+    @Autowired
+    private PersonalService personalService;
+
+    @GetMapping("/listar")
+    public String listar(Model modelo) {
+        modelo.addAttribute("listaPersonal", personalService.listarTodo());
+        return "vista_personal";
+    }
+
+    @GetMapping("/nuevo")
+    public String formularioNuevo(Model modelo) {
+        modelo.addAttribute("personal", new Personal());
+        return "form_personal";
+    }
+
+    @PostMapping("/guardar")
+    public String guardar(@ModelAttribute Personal personal) {
+        personalService.registrar(personal);
+        return "redirect:/personal/listar";
+    }
+
+    @GetMapping("/editar/{id}")
+    public String formularioEditar(@PathVariable Integer id, Model modelo) {
+        modelo.addAttribute("personal", personalService.buscarPorId(id));
+        return "form_personal";
+    }
+
+    @PostMapping("/actualizar")
+    public String actualizar(@ModelAttribute Personal personal) {
+        personalService.actualizar(personal);
+        return "redirect:/personal/listar";
+    }
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable Integer id) {
+        personalService.eliminar(id);
+        return "redirect:/personal/listar";
+    }
+}

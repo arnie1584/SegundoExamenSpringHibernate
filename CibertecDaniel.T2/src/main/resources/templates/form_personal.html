@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario Personal</title>
+</head>
+<body>
+    <h2 th:text="${personal.idPersonal == null ? 'Nuevo Personal' : 'Editar Personal'}"></h2>
+    <form th:action="@{/personal/guardar}" th:object="${personal}" method="post">
+        <input type="hidden" th:field="*{idPersonal}"/>
+
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombrePersonal}" required><br><br>
+
+        <label>Código:</label>
+        <input type="text" th:field="*{codigoPersonal}" required><br><br>
+
+        <label>Área Trabajo:</label>
+        <input type="text" th:field="*{areaTrabajo}"><br><br>
+
+        <label>Especialidad:</label>
+        <input type="text" th:field="*{especialidad}"><br><br>
+
+        <label>Tiempo Servicio:</label>
+        <input type="text" th:field="*{tiempoServicio}"><br><br>
+
+        <label>Tipo Sangre:</label>
+        <input type="text" th:field="*{tipoSangre}"><br><br>
+
+        <label>Sexo:</label>
+        <input type="text" th:field="*{sexoPersonal}"><br><br>
+
+        <button type="submit">Guardar</button>
+        <a th:href="@{/personal/listar}">Cancelar</a>
+    </form>
+</body>
+</html>

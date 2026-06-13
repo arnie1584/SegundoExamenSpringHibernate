@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestión de Personal</title>
+</head>
+<body>
+    <h1>Lista de Personal</h1>
+    <a th:href="@{/personal/nuevo}">+ Nuevo Personal</a>
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Código</th>
+            <th>Área</th>
+            <th>Especialidad</th>
+            <th>Empresa</th>
+            <th>Acciones</th>
+        </tr>
+        <tr th:each="p : ${listaPersonal}">
+            <td th:text="${p.idPersonal}"></td>
+            <td th:text="${p.nombrePersonal}"></td>
+            <td th:text="${p.codigoPersonal}"></td>
+            <td th:text="${p.areaTrabajo}"></td>
+            <td th:text="${p.especialidad}"></td>
+            <td th:text="${p.empresa.nombreEmpresa}"></td>
+            <td>
+                <a th:href="@{/personal/editar/{id}(id=${p.idPersonal})}">Editar</a> |
+                <a th:href="@{/personal/eliminar/{id}(id=${p.idPersonal})}" onclick="return confirm('¿Eliminar?')">Eliminar</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

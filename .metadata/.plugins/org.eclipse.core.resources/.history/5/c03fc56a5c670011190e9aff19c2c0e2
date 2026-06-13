@@ -1,0 +1,37 @@
+plugins {
+	id 'org.springframework.boot' version '3.4.0'
+	id 'io.spring.dependency-management' version '1.1.6'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '21'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Web
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	
+	// JPA + Hibernate (Requisito del examen)
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	
+	// Thymeleaf (Para nota excelente)
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	
+	// CONECTOR SQL SERVER (Ya no usamos MySQL)
+	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
+	
+	// Pruebas
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
